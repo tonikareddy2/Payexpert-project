@@ -205,7 +205,7 @@ def employee_management():
             print("Invalid choice. Please enter a valid option.")
 
 
-employee_management()
+# employee_management()
 
 
 def payroll_management():
@@ -240,7 +240,7 @@ def payroll_management():
             print("Invalid choice. Please enter a valid option.")
 
 
-payroll_management()
+# payroll_management()
 
 
 def tax_management():
@@ -273,7 +273,7 @@ def tax_management():
             print("Invalid choice. Please enter a valid option.")
 
 
-tax_management()
+# tax_management()
 
 
 def financial_record_management():
@@ -310,7 +310,7 @@ def financial_record_management():
             print("Invalid choice. Please enter a valid option.")
 
 
-financial_record_management()
+# financial_record_management()
 
 
 class MainMenu:
@@ -335,7 +335,7 @@ class MainMenu:
             elif choice == "4":
                 financial_record_management()
             elif choice == "5":
-                print("Exiting the program. Goodbye!")
+                print("Goodbye! Come back soon")
                 break
             else:
                 print("Invalid choice. Please enter a valid option.")
