@@ -34,3 +34,7 @@ VALUES
     (4, 4, '2024-05-01', 'Training Course Fee', 300.00, 'Expense'),
     (5, 5, '2024-05-01', 'Salary', 5800.00, 'Income');
 
+SELECT * FROM Employee;
+SELECT * FROM FinancialRecord;
+SELECT * FROM Payroll;
+SELECT * FROM Tax;

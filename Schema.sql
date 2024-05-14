@@ -1,3 +1,7 @@
+CREATE DATABASE payXpert;
+Use payXpert;
+
+
 -- Employee Table
 CREATE TABLE Employee (
     EmployeeID INT PRIMARY KEY,
