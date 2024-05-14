@@ -206,9 +206,6 @@ def employee_management():
             print("Invalid choice. Please enter a valid option.")
 
 
-# employee_management()
-
-
 def payroll_management():
     payroll_service = PayrollService()
 
@@ -241,9 +238,6 @@ def payroll_management():
             print("Invalid choice. Please enter a valid option.")
 
 
-# payroll_management()
-
-
 def tax_management():
     tax_service = TaxService()
 
@@ -272,9 +266,6 @@ def tax_management():
             break
         else:
             print("Invalid choice. Please enter a valid option.")
-
-
-# tax_management()
 
 
 def financial_record_management():
@@ -311,36 +302,31 @@ def financial_record_management():
             print("Invalid choice. Please enter a valid option.")
 
 
-# financial_record_management()
+def main():
+    while True:
+        print("Main Menu:")
+        print("1. Employee Management")
+        print("2. Payroll Management")
+        print("3. Tax Management")
+        print("4. Financial Record Management")
+        print("5. Exit")
+        choice = input("Enter your choice: ")
 
-
-class MainMenu:
-
-    @staticmethod
-    def main_menu():
-        while True:
-            print("Main Menu:")
-            print("1. Employee Management")
-            print("2. Payroll Management")
-            print("3. Tax Management")
-            print("4. Financial Record Management")
-            print("5. Exit")
-            choice = input("Enter your choice: ")
-
-            if choice == "1":
-                employee_management()
-            elif choice == "2":
-                payroll_management()
-            elif choice == "3":
-                tax_management()
-            elif choice == "4":
-                financial_record_management()
-            elif choice == "5":
-                print("Goodbye! Come back soon")
-                break
-            else:
-                print("Invalid choice. Please enter a valid option.")
+        if choice == "1":
+            employee_management()
+        elif choice == "2":
+            payroll_management()
+        elif choice == "3":
+            tax_management()
+        elif choice == "4":
+            financial_record_management()
+        elif choice == "5":
+            print("Goodbye! Come back soon")
+            break
+        else:
+            print("Invalid choice. Please enter a valid option.")
 
 
 if __name__ == "__main__":
-    MainMenu.main_menu()
+    print("Welcome to payroll management system")
+    main()
