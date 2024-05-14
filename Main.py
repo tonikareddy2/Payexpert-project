@@ -2,22 +2,6 @@ import pyodbc
 from DAO import EmployeeService, FinancialRecordService, TaxService, PayrollService
 from Entity import Employee, FinancialRecord, Tax, Payroll
 
-server_name = "DESKTOP-P8QAI2N\SQLEXPRESS"
-database_name = "payXpert"
-
-
-conn_str = (
-    f"Driver={{SQL Server}};"
-    f"Server={server_name};"
-    f"Database={database_name};"
-    f"Trusted_Connection=yes;"
-)
-# print(conn_str)
-conn = pyodbc.connect(conn_str)
-cursor = conn.cursor()
-cursor.execute("SELECT 1")
-print("Database connection is successful")
-
 
 class MainMenu:
     employee_service = EmployeeService()
