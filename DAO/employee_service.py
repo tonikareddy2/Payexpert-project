@@ -1,4 +1,5 @@
 from Util.DBconn import DBconnection
+from Myexceptions.custom_exceptions import EmployeeNotFoundException
 
 
 class EmployeeService(DBconnection):
@@ -28,6 +29,8 @@ class EmployeeService(DBconnection):
             self.cursor.execute(
                 "DELETE FROM Employee WHERE EmployeeID = ?", (employee_id,)
             )
+            if self.cursor.rowcount == 0:
+                raise EmployeeNotFoundException(employee_id)
             self.conn.commit()
             print("Employee deleted successfully.")
         except Exception as e:
@@ -43,6 +46,8 @@ class EmployeeService(DBconnection):
                 """,
                 employee_data,
             )
+            if self.cursor.rowcount == 0:
+                raise EmployeeNotFoundException(employee_data[10])
             self.conn.commit()
             print("Employee updated successfully.")
         except Exception as e:

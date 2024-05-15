@@ -11,11 +11,14 @@ class MainMenu:
 
     def employee_management(self):
         while True:
-            print("1. Create an employee")
-            print("2. Delete an employee")
-            print("3. Read employees")
-            print("4. Update an employee")
-            print("5. Exit")
+            print(
+                """1. Create an employee
+                   2. Delete an employee
+                   3. Read employees
+                   4. Update an employee
+                   5. Exit
+            """
+            )
             choice = input("Enter your choice: ")
             if choice == "1":
                 employee_data = (
@@ -134,17 +137,15 @@ class MainMenu:
                 )
             elif choice == "2":
                 record_id = input("Enter RecordID: ")
-                self.financial_record_service.get_financial_record_by_id(record_id)
+                self.financialrecord_service.get_financial_record_by_id(record_id)
             elif choice == "3":
                 employee_id = input("Enter EmployeeID: ")
-                self.financial_record_service.get_financial_records_for_employee(
+                self.financialrecord_service.get_financial_records_for_employee(
                     employee_id
                 )
             elif choice == "4":
                 record_date = input("Enter Record Date (YYYY-MM-DD): ")
-                self.financial_record_service.get_financial_records_for_date(
-                    record_date
-                )
+                self.financialrecord_service.get_financial_records_for_date(record_date)
             elif choice == "5":
                 break
             else:

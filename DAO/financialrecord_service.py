@@ -1,5 +1,6 @@
 from datetime import datetime
 from Util.DBconn import DBconnection
+from Myexceptions.custom_exceptions import FinancialRecordException
 
 
 class FinancialRecordService(DBconnection):
@@ -40,6 +41,10 @@ class FinancialRecordService(DBconnection):
                 "SELECT * FROM FinancialRecord WHERE EmployeeID = ?", (employee_id,)
             )
             records = self.cursor.fetchall()
+            if not records:
+                raise FinancialRecordException(
+                    f"No financial records found for Employee ID {employee_id}."
+                )
             for record in records:
                 print(record)
         except Exception as e:
@@ -51,6 +56,10 @@ class FinancialRecordService(DBconnection):
                 "SELECT * FROM FinancialRecord WHERE RecordDate = ?", (record_date,)
             )
             records = self.cursor.fetchall()
+            if not records:
+                raise FinancialRecordException(
+                    f"No financial records found for date {record_date}."
+                )
             for record in records:
                 print(record)
         except Exception as e:

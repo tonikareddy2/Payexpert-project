@@ -1,4 +1,8 @@
 from Util.DBconn import DBconnection
+from Myexceptions.custom_exceptions import (
+    InvalidInputException,
+    TaxCalculationException,
+)
 
 
 class TaxService(DBconnection):
@@ -20,10 +24,11 @@ class TaxService(DBconnection):
             )
             total_taxable_income = self.cursor.fetchone()[0]
             if total_taxable_income is None:
-                print(
+                raise TaxCalculationException(
                     f"No taxable income found for Employee ID {employee_id} in Tax Year {tax_year}"
                 )
-                return
+            if tax_year < 0:  # Example condition for invalid tax year
+                raise InvalidInputException("Tax year cannot be negative")
             # Applying tax rate (assuming a fixed tax rate for simplicity)
             tax_rate = 0.15
             tax_amount = total_taxable_income * tax_rate

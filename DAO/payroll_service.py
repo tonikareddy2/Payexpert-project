@@ -1,4 +1,5 @@
 from Util.DBconn import DBconnection
+from Myexceptions.custom_exceptions import PayrollGenerationException
 
 
 class PayrollService(DBconnection):
@@ -19,6 +20,10 @@ class PayrollService(DBconnection):
                 (employee_id, start_date, end_date),
             )
             payroll_data = self.cursor.fetchall()
+            if not payroll_data:  # Check if payroll data is empty
+                raise PayrollGenerationException(
+                    f"No payroll data found for Employee ID {employee_id} within the specified period"
+                )
             total_basic_salary = sum([record[0] for record in payroll_data])
             total_overtime_pay = sum([record[1] for record in payroll_data])
             total_deductions = sum([record[2] for record in payroll_data])
