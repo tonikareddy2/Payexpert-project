@@ -1,28 +1,65 @@
-class TaxService:
+from Util.DBconn import DBconnection
+
+
+class TaxService(DBconnection):
 
     def read_taxes(self):
-        self.cursor.execute("SELECT * FROM Tax")
-        taxes = self.cursor.fetchall()
-        for tax in taxes:
-            print(tax)
+        try:
+            self.cursor.execute("SELECT * FROM Tax")
+            taxes = self.cursor.fetchall()
+            for tax in taxes:
+                print(tax)
+        except Exception as e:
+            print(e)
 
     def calculate_tax(self, employee_id, tax_year):
-        # Your logic for calculating taxes goes here
-        pass
+        try:
+            self.cursor.execute(
+                "SELECT SUM(TaxableIncome) FROM Tax WHERE EmployeeID = ? AND TaxYear = ?",
+                (employee_id, tax_year),
+            )
+            total_taxable_income = self.cursor.fetchone()[0]
+            if total_taxable_income is None:
+                print(
+                    f"No taxable income found for Employee ID {employee_id} in Tax Year {tax_year}"
+                )
+                return
+            # Applying tax rate (assuming a fixed tax rate for simplicity)
+            tax_rate = 0.15
+            tax_amount = total_taxable_income * tax_rate
+            print(
+                f"Tax calculated for Employee ID {employee_id} for Tax Year {tax_year}:"
+            )
+            print(f"Total Taxable Income: {total_taxable_income}")
+            print(f"Tax Rate: {tax_rate}")
+            print(f"Tax Amount: {tax_amount}")
+        except Exception as e:
+            print(e)
 
     def get_tax_by_id(self, tax_id):
-        self.cursor.execute("SELECT * FROM Tax WHERE TaxID = ?", (tax_id,))
-        tax = self.cursor.fetchone()
-        print(tax)
+        try:
+            self.cursor.execute("SELECT * FROM Tax WHERE TaxID = ?", (tax_id,))
+            tax = self.cursor.fetchone()
+            print(tax)
+        except Exception as e:
+            print(e)
 
     def get_taxes_for_employee(self, employee_id):
-        self.cursor.execute("SELECT * FROM Tax WHERE EmployeeID = ?", (employee_id,))
-        taxes = self.cursor.fetchall()
-        for tax in taxes:
-            print(tax)
+        try:
+            self.cursor.execute(
+                "SELECT * FROM Tax WHERE EmployeeID = ?", (employee_id,)
+            )
+            taxes = self.cursor.fetchall()
+            for tax in taxes:
+                print(tax)
+        except Exception as e:
+            print(e)
 
     def get_taxes_for_year(self, tax_year):
-        self.cursor.execute("SELECT * FROM Tax WHERE TaxYear = ?", (tax_year,))
-        taxes = self.cursor.fetchall()
-        for tax in taxes:
-            print(tax)
+        try:
+            self.cursor.execute("SELECT * FROM Tax WHERE TaxYear = ?", (tax_year,))
+            taxes = self.cursor.fetchall()
+            for tax in taxes:
+                print(tax)
+        except Exception as e:
+            print(e)
