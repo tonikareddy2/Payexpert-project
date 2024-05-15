@@ -16,7 +16,7 @@ class MainMenu:
                    2. Delete an employee
                    3. Read employees
                    4. Update an employee
-                   5. Exit
+                   5. Back to Main Menu
             """
             )
             choice = input("Enter your choice: ")
@@ -63,11 +63,14 @@ class MainMenu:
 
     def payroll_management(self):
         while True:
-            print("1. Generate payroll for an employee")
-            print("2. Get payroll by ID")
-            print("3. Get payrolls for an employee")
-            print("4. Get payrolls for a period")
-            print("5. Exit")
+            print(
+                """1. Generate payroll for an employee
+                   2. Get payroll by ID
+                   3. Get payrolls for an employee
+                   4. Get payrolls for a period
+                   5. Back to Main Menu
+            """
+            )
             choice = input("Enter your choice: ")
 
             if choice == "1":
@@ -93,11 +96,14 @@ class MainMenu:
     def tax_management(self):
 
         while True:
-            print("1. Calculate tax for an employee")
-            print("2. Get tax by ID")
-            print("3. Get taxes for an employee")
-            print("4. Get taxes for a year")
-            print("5. Exit")
+            print(
+                """1. Calculate tax for an employee
+                   2. Get tax by ID
+                   3. Get taxes for an employee
+                   4. Get taxes for a year
+                   5. Back to Main Menu
+                   """
+            )
             choice = input("Enter your choice: ")
 
             if choice == "1":
@@ -120,11 +126,13 @@ class MainMenu:
 
     def financial_record_management(self):
         while True:
-            print("1. Add a financial record for an employee")
-            print("2. Get financial record by ID")
-            print("3. Get financial records for an employee")
-            print("4. Get financial records for a date")
-            print("5. Exit")
+            print(
+                """1. Add a financial record for an employee
+                   2. Get financial record by ID
+                   3. Get financial records for an employee
+                   4. Get financial records for a date
+                   5. Back to Main Menu"""
+            )
             choice = input("Enter your choice: ")
 
             if choice == "1":
@@ -155,12 +163,14 @@ class MainMenu:
 def main():
     main_menu = MainMenu()
     while True:
-        print("Main Menu:")
-        print("1. Employee Management")
-        print("2. Payroll Management")
-        print("3. Tax Management")
-        print("4. Financial Record Management")
-        print("5. Exit")
+        print(
+            """Main Menu:
+            1. Employee Management
+            2. Payroll Management
+            3. Tax Management
+            4. Financial Record Management
+            5. Exit"""
+        )
         choice = input("Enter your choice: ")
 
         if choice == "1":
