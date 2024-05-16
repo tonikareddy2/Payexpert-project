@@ -5,7 +5,7 @@ from abc import ABC, abstractmethod
 
 class IEmployeeService(ABC):
     @abstractmethod
-    def read_employee(self):
+    def read_employees(self):
         pass
 
     @abstractmethod
