@@ -10,6 +10,7 @@ class PayrollService(DBconnection):
             payrolls = self.cursor.fetchall()
             for payroll in payrolls:
                 print(payroll)
+            return payrolls
         except Exception as e:
             print(e)
 
@@ -46,6 +47,7 @@ class PayrollService(DBconnection):
             )
             payroll = self.cursor.fetchone()
             print(payroll)
+            return payroll
         except Exception as e:
             print(e)
 
@@ -57,6 +59,7 @@ class PayrollService(DBconnection):
             payrolls = self.cursor.fetchall()
             for payroll in payrolls:
                 print(payroll)
+            return payrolls
         except Exception as e:
             print(e)
 
@@ -69,5 +72,6 @@ class PayrollService(DBconnection):
             payrolls = self.cursor.fetchall()
             for payroll in payrolls:
                 print(payroll)
+            return payrolls
         except Exception as e:
             print(e)
