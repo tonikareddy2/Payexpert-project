@@ -1,8 +1,27 @@
 from Util.DBconn import DBconnection
 from Myexceptions.custom_exceptions import EmployeeNotFoundException
+from abc import ABC, abstractmethod
 
 
-class EmployeeService(DBconnection):
+class IEmployeeService(ABC):
+    @abstractmethod
+    def read_employee(self):
+        pass
+
+    @abstractmethod
+    def create_employee(self, employee_data):
+        pass
+
+    @abstractmethod
+    def update_employee(self, employee_data, employee_id):
+        pass
+
+    @abstractmethod
+    def delete_employee(self, employee_id):
+        pass
+
+
+class EmployeeService(DBconnection, IEmployeeService):
 
     def read_employees(self):
         try:

@@ -2,9 +2,32 @@ from datetime import datetime
 from decimal import Decimal
 from Util.DBconn import DBconnection
 from Myexceptions.custom_exceptions import FinancialRecordException
+from abc import ABC, abstractmethod
 
 
-class FinancialRecordService(DBconnection):
+class IFinancialRecordService(ABC):
+    @abstractmethod
+    def read_financial_records(self):
+        pass
+
+    @abstractmethod
+    def add_financial_record(self, employee_id, description, amount, record_type):
+        pass
+
+    @abstractmethod
+    def get_financial_record_by_id(self, record_id):
+        pass
+
+    @abstractmethod
+    def get_financial_records_for_employee(self, employee_id):
+        pass
+
+    @abstractmethod
+    def get_financial_records_for_date(self, record_date):
+        pass
+
+
+class FinancialRecordService(IFinancialRecordService, DBconnection):
 
     def read_financial_records(self):
         try:

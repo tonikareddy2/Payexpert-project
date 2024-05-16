@@ -1,8 +1,31 @@
 from Util.DBconn import DBconnection
 from Myexceptions.custom_exceptions import PayrollGenerationException
+from abc import ABC, abstractmethod
 
 
-class PayrollService(DBconnection):
+class IPayrollService(ABC):
+    @abstractmethod
+    def read_payrolls(self):
+        pass
+
+    @abstractmethod
+    def generate_payroll(self, employee_id, start_date, end_date):
+        pass
+
+    @abstractmethod
+    def get_payroll_by_id(self, payroll_id):
+        pass
+
+    @abstractmethod
+    def get_payrolls_for_employee(self, employee_id):
+        pass
+
+    @abstractmethod
+    def get_payrolls_for_period(self, start_date, end_date):
+        pass
+
+
+class PayrollService(DBconnection, IPayrollService):
 
     def read_payrolls(self):
         try:
