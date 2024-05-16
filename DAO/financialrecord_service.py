@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 from Util.DBconn import DBconnection
 from Myexceptions.custom_exceptions import FinancialRecordException
 
@@ -11,19 +12,25 @@ class FinancialRecordService(DBconnection):
             records = self.cursor.fetchall()
             for record in records:
                 print(record)
+            return records
         except Exception as e:
             print(e)
 
     def add_financial_record(self, employee_id, description, amount, record_type):
         try:
             self.cursor.execute(
-                "INSERT INTO FinancialRecord (EmployeeID, RecordDate, Description, Amount, RecordType) VALUES (?,?,?,?,?)",
+                """
+            INSERT INTO FinancialRecord (EmployeeID, RecordDate, Description, Amount, RecordType) 
+            VALUES (?,?,?,?,?)
+            """,
                 (employee_id, datetime.now(), description, amount, record_type),
             )
             self.conn.commit()
             print("Financial record added successfully.")
+            return True
         except Exception as e:
             print(e)
+            return False
 
     def get_financial_record_by_id(self, record_id):
         try:
@@ -32,6 +39,7 @@ class FinancialRecordService(DBconnection):
             )
             record = self.cursor.fetchone()
             print(record)
+            return record
         except Exception as e:
             print(e)
 
@@ -47,13 +55,15 @@ class FinancialRecordService(DBconnection):
                 )
             for record in records:
                 print(record)
+            return records
         except Exception as e:
             print(e)
 
     def get_financial_records_for_date(self, record_date):
         try:
             self.cursor.execute(
-                "SELECT * FROM FinancialRecord WHERE RecordDate = ?", (record_date,)
+                "SELECT * FROM FinancialRecord WHERE CONVERT(date, RecordDate) = ?",
+                (record_date,),
             )
             records = self.cursor.fetchall()
             if not records:
@@ -62,5 +72,6 @@ class FinancialRecordService(DBconnection):
                 )
             for record in records:
                 print(record)
+            return records
         except Exception as e:
             print(e)
