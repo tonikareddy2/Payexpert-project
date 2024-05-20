@@ -12,7 +12,8 @@ class MainMenu:
     def employee_management(self):
         while True:
             print(
-                """1. Create an employee
+                """
+                   1. Create an employee
                    2. Delete an employee
                    3. Read employees
                    4. Update an employee
@@ -53,9 +54,11 @@ class MainMenu:
                     input("Enter position: "),
                     input("Enter joining date (YYYY-MM-DD): "),
                     input("Enter termination date (YYYY-MM-DD, if any): "),
-                    input("Enter the EmployeeID to update: "),
                 )
-                self.employee_service.update_employee(employee_data)
+                if employee_data[9].upper() == "NULL":
+                    employee_data = employee_data[:9] + (None,)
+                employee_id = int(input("Enter the EmployeeID to update: "))
+                self.employee_service.update_employee(employee_data, employee_id)
             elif choice == "5":
                 break
             else:
@@ -64,7 +67,8 @@ class MainMenu:
     def payroll_management(self):
         while True:
             print(
-                """1. Generate payroll for an employee
+                """
+                   1. Generate payroll for an employee
                    2. Get payroll by ID
                    3. Get payrolls for an employee
                    4. Get payrolls for a period
@@ -97,7 +101,8 @@ class MainMenu:
 
         while True:
             print(
-                """1. Calculate tax for an employee
+                """
+                   1. Calculate tax for an employee
                    2. Get tax by ID
                    3. Get taxes for an employee
                    4. Get taxes for a year
@@ -127,7 +132,8 @@ class MainMenu:
     def financial_record_management(self):
         while True:
             print(
-                """1. Add a financial record for an employee
+                """
+                   1. Add a financial record for an employee
                    2. Get financial record by ID
                    3. Get financial records for an employee
                    4. Get financial records for a date
@@ -140,7 +146,7 @@ class MainMenu:
                 description = input("Enter description: ")
                 amount = input("Enter amount: ")
                 record_type = input("Enter record type: ")
-                self.financial_record_service.add_financial_record(
+                self.financialrecord_service.add_financial_record(
                     employee_id, description, amount, record_type
                 )
             elif choice == "2":

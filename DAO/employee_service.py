@@ -78,17 +78,17 @@ class EmployeeService(DBconnection, IEmployeeService):
                 WHERE EmployeeID = ?
                 """,
                 (
-                    employee_data.first_name,
-                    employee_data.last_name,
-                    employee_data.date_of_birth,
-                    employee_data.gender,
-                    employee_data.email,
-                    employee_data.phone_number,
-                    employee_data.address,
-                    employee_data.position,
-                    employee_data.joining_date,
-                    employee_data.termination_date,
-                    employee_id,
+                    employee_data[0],  # FirstName
+                    employee_data[1],  # LastName
+                    employee_data[2],  # DateOfBirth
+                    employee_data[3],  # Gender
+                    employee_data[4],  # Email
+                    employee_data[5],  # PhoneNumber
+                    employee_data[6],  # Address
+                    employee_data[7],  # Position
+                    employee_data[8],  # JoiningDate
+                    employee_data[9],  # TerminationDate
+                    employee_id,  # EmployeeID
                 ),
             )
             if self.cursor.rowcount == 0:
