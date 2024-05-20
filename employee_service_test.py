@@ -25,6 +25,12 @@ class TestEmployeeServiceModule(unittest.TestCase):
         )
         self.assertIsNotNone(self.test_employee_id)
 
+    def tearDown(self):
+        # Clean up after each test case
+        if self.test_employee_id:
+            self.employee_service.delete_employee(self.test_employee_id)
+            self.test_employee_id = None
+
     def test_read_employees(self):
         employees = self.employee_service.read_employees()
         self.assertIsNotNone(employees)

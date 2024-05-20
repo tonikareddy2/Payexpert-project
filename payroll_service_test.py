@@ -6,6 +6,10 @@ class TestPayrollServiceModule(unittest.TestCase):
     def setUp(self):
         self.payroll_service = PayrollService()
 
+    def tearDown(self):
+        # Clean up after each test case
+        self.payroll_service = None
+
     def test_read_payrolls(self):
         payrolls = self.payroll_service.read_payrolls()
         self.assertIsNotNone(payrolls)

@@ -7,6 +7,10 @@ class TestFinancialRecordServiceModule(unittest.TestCase):
     def setUp(self):
         self.financial_record_service = FinancialRecordService()
 
+    def tearDown(self):
+        # Clean up after each test case
+        self.financial_record_service = None
+
     def test_read_financial_records(self):
         records = self.financial_record_service.read_financial_records()
         self.assertIsNotNone(records)
