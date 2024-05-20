@@ -1,6 +1,7 @@
 from datetime import datetime
 from decimal import Decimal
 from Util.DBconn import DBconnection
+from Entity import FinancialRecord
 from Myexceptions.custom_exceptions import FinancialRecordException
 from abc import ABC, abstractmethod
 
@@ -39,14 +40,24 @@ class FinancialRecordService(IFinancialRecordService, DBconnection):
         except Exception as e:
             print(e)
 
-    def add_financial_record(self, employee_id, description, amount, record_type):
+    def add_financial_record(
+        self, Record_id, employee_id, RecordDate, description, amount, record_type
+    ):
         try:
             self.cursor.execute(
                 """
-            INSERT INTO FinancialRecord (EmployeeID, RecordDate, Description, Amount, RecordType) 
-            VALUES (?,?,?,?,?)
+            INSERT INTO FinancialRecord (RecordID, EmployeeID, RecordDate, Description, Amount, RecordType) 
+            VALUES (?, ?, ?, ?, ?, ?)
+
             """,
-                (employee_id, datetime.now(), description, amount, record_type),
+                (
+                    Record_id,
+                    employee_id,
+                    RecordDate,
+                    description,
+                    amount,
+                    record_type,
+                ),
             )
             self.conn.commit()
             print("Financial record added successfully.")
@@ -90,11 +101,11 @@ class FinancialRecordService(IFinancialRecordService, DBconnection):
             )
             records = self.cursor.fetchall()
             if not records:
-                raise FinancialRecordException(
-                    f"No financial records found for date {record_date}."
-                )
+                raise FinancialRecordException(record_date)
             for record in records:
                 print(record)
             return records
+        except FinancialRecordException as e:
+            print(e)
         except Exception as e:
             print(e)

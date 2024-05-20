@@ -14,8 +14,8 @@ class TaxCalculationException(Exception):
 
 
 class FinancialRecordException(Exception):
-    def __init__(self):
-        super().__init__("Financial record error occured")
+    def __init__(self, record_date):
+        super().__init__(f"Financial record not found for this date {record_date}")
 
 
 class InvalidInputException(Exception):

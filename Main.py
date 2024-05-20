@@ -142,12 +142,14 @@ class MainMenu:
             choice = input("Enter your choice: ")
 
             if choice == "1":
+                Record_id = int(input("Enter RecordID: "))
                 employee_id = input("Enter EmployeeID: ")
+                RecordDate = input("Enter the RecordDate: ")
                 description = input("Enter description: ")
                 amount = input("Enter amount: ")
                 record_type = input("Enter record type: ")
                 self.financialrecord_service.add_financial_record(
-                    employee_id, description, amount, record_type
+                    Record_id, employee_id, RecordDate, description, amount, record_type
                 )
             elif choice == "2":
                 record_id = input("Enter RecordID: ")
