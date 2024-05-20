@@ -16,12 +16,14 @@ class TestFinancialRecordServiceModule(unittest.TestCase):
         self.assertIsNotNone(records)
 
     def test_add_financial_record(self):
+        Record_id = 1
         employee_id = 1
+        RecordDate = "2024-05-01"
         description = "Test expense"
         amount = Decimal("100.0")
         record_type = "Expense"
         self.financial_record_service.add_financial_record(
-            employee_id, description, amount, record_type
+            Record_id, employee_id, RecordDate, description, amount, record_type
         )
         # You can add assertions here to check if the record is added successfully.
 

@@ -56,8 +56,8 @@ class TestEmployeeServiceModule(unittest.TestCase):
             "SELECT * FROM Employee WHERE EmployeeID = ?", (self.test_employee_id,)
         ).fetchone()
 
-        self.assertEqual(updated_employee[1], "John")
-        self.assertEqual(updated_employee[2], "Doe")
+        self.assertEqual(updated_employee[1], "Updated John")
+        self.assertEqual(updated_employee[2], "Updated Doe")
         self.assertEqual(updated_employee[4], "M")
 
     def test_delete_employee(self):
